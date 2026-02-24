@@ -1,6 +1,7 @@
 import pandas as pd
 from pathlib import Path
 
+
 RAW_DATA_PATH = "data/raw/store_item_demand.csv"
 OUTPUT_PATH = "data/raw/real_retail_demand.csv"
 

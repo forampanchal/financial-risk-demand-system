@@ -1,15 +1,20 @@
-FROM python:3.11-slim
+# Base image
+FROM python:3.10-slim
 
+# Set working directory
 WORKDIR /app
 
+# Copy requirements first (for caching)
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy entire project
 COPY . .
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
+# Create artifacts directory
+RUN mkdir -p artifacts
 
-RUN pip install --upgrade pip
-
-RUN pip install -r requirements.txt
-
-CMD ["python", "-m", "src.anomaly.detect_anomalies"]
+# Default command (run daily batch)
+CMD ["python", "-m", "src.pipeline.daily_pipeline"]

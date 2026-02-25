@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t forampanchal1999/financial-risk-system .
+        run: docker build -t forampanchal1999/financial-risk-monitor .
 
       - name: Push Docker image
-        run: docker push forampanchal1999/financial-risk-system
+        run: docker push forampanchal1999/financial-risk-monitor

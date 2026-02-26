@@ -6,3 +6,5 @@ joblib
 matplotlib
 plotly
 statsmodels
+fastapi
+uvicorn

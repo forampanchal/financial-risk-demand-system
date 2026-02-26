@@ -35,6 +35,9 @@ def main():
     # Ensure artifacts directory exists
     Path("artifacts").mkdir(exist_ok=True)
 
+    # Save full historical risk output
+    df.to_csv("artifacts/daily_risk_output.csv", index=False)
+
     # Save only latest day's result
     latest_row = df.iloc[-1:]
     latest_row.to_csv("artifacts/latest_risk.csv", index=False)

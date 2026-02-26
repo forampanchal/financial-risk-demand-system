@@ -17,4 +17,4 @@ COPY . .
 RUN mkdir -p artifacts
 
 # Default command (run daily batch)
-CMD ["python", "-m", "src.pipeline.daily_pipeline"]
+CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]

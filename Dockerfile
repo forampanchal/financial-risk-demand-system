@@ -1,20 +1,18 @@
-# Base image
-FROM python:3.10-slim
-
-# Set working directory
-WORKDIR /app
-
-# Copy requirements first (for caching)
-COPY requirements.txt .
+# Use AWS Lambda base image for Python
+FROM public.ecr.aws/lambda/python:3.10
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt ${LAMBDA_TASK_ROOT}/
+RUN pip install --no-cache-dir -r ${LAMBDA_TASK_ROOT}/requirements.txt
 
-# Copy entire project
-COPY . .
+# Copy entire project to Lambda's task root
+COPY . ${LAMBDA_TASK_ROOT}/
 
 # Create artifacts directory
-RUN mkdir -p artifacts
+RUN mkdir -p ${LAMBDA_TASK_ROOT}/artifacts
 
-# Default command (run daily batch)
-CMD ["lambda_handler.handler"] 
+# Set working directory
+WORKDIR ${LAMBDA_TASK_ROOT}
+
+# Tell Lambda to run our handler
+CMD ["lambda_handler.handler"]

@@ -17,4 +17,4 @@ COPY . .
 RUN mkdir -p artifacts
 
 # Default command (run daily batch)
-CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["lambda_handler.handler"] 

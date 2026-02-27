@@ -13,15 +13,17 @@ def handler(event, context):
         return {
             "statusCode": 200,
             "body": json.dumps("Pipeline ran successfully.")
-
         }
+
     except Exception as e:
         print(f"Pipeline failed: {str(e)}")
         return {
             "statusCode": 500,
-            "body": json.dumps(f"Piple failed: {str(e)}")
-
+            "body": json.dumps(f"Pipeline failed: {str(e)}")
         }
+# ```
+
+# ---
 
 # ## What's Happening Here
 
@@ -37,7 +39,7 @@ def handler(event, context):
 
 # ---
 
-# ## Project Structure Now Looks Like
+# ## Your Project Structure Now Looks Like
 # ```
 # financial-risk-monitor/
 #     api/
